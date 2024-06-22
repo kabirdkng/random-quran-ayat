@@ -32,17 +32,18 @@ const QuoteBox = () => {
     };
   
     return (
-      <>
+      <div className='container'>
         <h1>Random Quran Ayah</h1>
-        <div id='quote-box' className="box">
-        <div id="text" className='text'>{quote}</div>
-        <div id="author" className='author'> - <span>{refference}</span> </div>
-        <div className='actions'>
-          <button id="new-quote" className='button' onClick={handleNewQuote}>Refresh</button>
-          <a href="twitter.com/intent/tweet" id="tweet-quote" className='button'>Tweet Ayah</a>
-        </div>
+          <div id='quote-box' className="box">
+            <div id="text" className='text'>{quote}</div>
+            <div id="author" className='author'> - <span>{refference}</span> </div>
+            <div className='actions'>
+               <button id="new-quote" className='button' onClick={handleNewQuote}>Refresh</button>
+               <a href="twitter.com/intent/tweet" id="tweet-quote" className='button'>Tweet Ayah</a>
+           </div>
+          </div>
+          <p>Designed by <a href='https://x.com/kabir_crypto' target='_blank'>Kabir</a></p>
       </div>
-      </>
       
     );
 }

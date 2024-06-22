@@ -52,3 +52,8 @@ h1{
   color: var(--color2);
   border-radius: 0.5rem;
 }
+.container{
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+}
