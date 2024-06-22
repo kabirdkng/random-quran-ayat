@@ -27,7 +27,13 @@ jobs:
         run: mkdir -p docs
 
       - name: Copy files to docs
-        run: cp -r ./dist/* docs/
+        run: |
+          if [ -d dist ]; then
+            cp -r dist/* docs/
+          else
+            echo "Error: dist directory is empty"
+            exit 1
+          fi
 
       - name: Deploy to GitHub Pages
         env:
@@ -36,7 +42,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@github.com"
-          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${REPO_NAME}
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git
           git checkout -b gh-pages || git checkout gh-pages
           rm -rf ./*
           cp -r docs/* ./
