@@ -75,11 +75,15 @@ jobs:
           git config --global user.email "github-actions[bot]@github.com"
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git
           echo "Checking out gh-pages branch..."
-          git checkout -b gh-pages || git checkout gh-pages
+          git fetch origin
+          git switch -c gh-pages || git switch gh-pages
+          echo "Creating a temporary backup of docs..."
+          mkdir -p ../backup_docs
+          cp -r docs/* ../backup_docs/
           echo "Clearing existing files..."
           rm -rf ./*
-          echo "Copying files from docs to current directory..."
-          cp -r docs/* ./
+          echo "Restoring docs from backup..."
+          cp -r ../backup_docs/* ./
           echo "Current directory contents after copy:"
           ls -la
           echo "Committing changes..."
