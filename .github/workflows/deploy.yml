@@ -27,7 +27,7 @@ jobs:
         run: mkdir -p dist
 
       - name: Copy files to dist
-        run: cp -r ./* dist/
+        run: cp -r ./* /
 
       - name: Deploy to GitHub Pages
         env:
