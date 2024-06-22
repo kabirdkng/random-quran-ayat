@@ -9,7 +9,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: 'index.html',
+      input: 'src/main.jsx',
       output: {
         dir: 'dist',
         entryFileNames: 'index.html',
