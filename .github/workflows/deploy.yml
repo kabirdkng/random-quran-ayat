@@ -58,7 +58,6 @@ jobs:
         run: |
           echo "Copying files from dist to docs..."
           cp -r dist/* docs/
-          cp index.html docs/
           echo "docs directory contents after copy:"
           ls -la docs
 
