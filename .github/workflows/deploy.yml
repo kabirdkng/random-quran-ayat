@@ -23,8 +23,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Copy index.html to 404.html
-        run: cp dist/index.html dist/404.html
+      - name: Create dist directory
+        run: mkdir -p dist
+
+      - name: Copy files to dist
+        run: cp -r ./* dist/
 
       - name: Deploy to GitHub Pages
         env:
