@@ -34,4 +34,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@github.com"
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git
-          git push origin gh-pages
+          git checkout -b gh-pages || git checkout gh-pages
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git push origin gh-pages --force
