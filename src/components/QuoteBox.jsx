@@ -30,6 +30,10 @@ const QuoteBox = () => {
     const handleNewQuote = () => {
       fetchQuote();
     };
+    const tweetQuote = () => {
+      const tweetUrl = `https://twitter.com/intent/tweet?text="${quote}" - ${refference}`;
+      window.open(tweetUrl, '_blank');
+    };
   
     return (
       <div className='container'>
@@ -39,7 +43,7 @@ const QuoteBox = () => {
             <div id="author" className='author'> - <span>{refference}</span> </div>
             <div className='actions'>
                <button id="new-quote" className='button' onClick={handleNewQuote}>Refresh</button>
-               <a href="twitter.com/intent/tweet" id="tweet-quote" className='button'>Tweet Ayah</a>
+               <a href="#" id="tweet-quote" className='button' onClick={tweetQuote}>Tweet Ayah</a>
            </div>
           </div>
           <p>Designed by <a href='https://x.com/kabir_crypto' target='_blank'>Kabir</a></p>
