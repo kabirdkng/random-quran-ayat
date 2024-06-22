@@ -73,7 +73,7 @@ jobs:
           echo "Configuring Git..."
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@github.com"
-          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${REPO_NAME}.git
           echo "Checking out gh-pages branch..."
           git fetch origin
           git switch -c gh-pages || git switch gh-pages
