@@ -51,6 +51,20 @@ jobs:
           echo "docs directory contents after copy:"
           ls -la docs
 
+      - name: Verify docs directory
+        run: |
+          echo "Verifying docs directory exists and is not empty..."
+          if [ ! -d docs ]; then
+            echo "Error: docs directory does not exist."
+            exit 1
+          fi
+          if [ -z "$(ls -A docs)" ]; then
+            echo "Error: docs directory is empty."
+            exit 1
+          fi
+          echo "docs directory contents:"
+          ls -la docs
+
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
