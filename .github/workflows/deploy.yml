@@ -23,20 +23,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Verify dist directory
-        run: |
-          echo "Checking if dist directory exists and is not empty..."
-          if [ ! -d dist ]; then
-            echo "Error: dist directory does not exist."
-            exit 1
-          fi
-          if [ -z "$(ls -A dist)" ]; then
-            echo "Error: dist directory is empty."
-            exit 1
-          fi
-          echo "dist directory contents:"
-          ls -la dist
-
       - name: Ensure 404.html exists
         run: |
           echo "Ensuring 404.html exists in dist directory..."
@@ -47,32 +33,12 @@ jobs:
           echo "404.html content:"
           cat dist/404.html
 
-      - name: Create docs directory
-        run: |
-          echo "Creating docs directory..."
-          mkdir -p docs
-          echo "docs directory created."
-          ls -la docs
-
       - name: Copy files to docs
         run: |
           echo "Copying files from dist to docs..."
+          mkdir -p docs
           cp -r dist/* docs/
           echo "docs directory contents after copy:"
-          ls -la docs
-
-      - name: Verify docs directory
-        run: |
-          echo "Verifying docs directory exists and is not empty..."
-          if [ ! -d docs ]; then
-            echo "Error: docs directory does not exist."
-            exit 1
-          fi
-          if [ -z "$(ls -A docs)" ]; then
-            echo "Error: docs directory is empty."
-            exit 1
-          fi
-          echo "docs directory contents:"
           ls -la docs
 
       - name: Deploy to GitHub Pages
@@ -87,13 +53,10 @@ jobs:
           echo "Checking out gh-pages branch..."
           git fetch origin
           git switch -c gh-pages || git switch gh-pages
-          echo "Creating a temporary backup of docs..."
-          mkdir -p ../backup_docs
-          cp -r docs/* ../backup_docs/
           echo "Clearing existing files..."
           rm -rf ./*
-          echo "Restoring docs from backup..."
-          cp -r ../backup_docs/* ./
+          echo "Copying new files from docs..."
+          cp -r docs/* ./
           echo "Current directory contents after copy:"
           ls -la
           echo "Committing changes..."
