@@ -23,17 +23,18 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Verify dist directory
+        run: |
+          if [ ! -d dist ] || [ -z "$(ls -A dist)" ]; then
+            echo "Error: dist directory is empty or does not exist"
+            exit 1
+          fi
+
       - name: Create docs directory
         run: mkdir -p docs
 
       - name: Copy files to docs
-        run: |
-          if [ -d dist ]; then
-            cp -r dist/* docs/
-          else
-            echo "Error: dist directory is empty"
-            exit 1
-          fi
+        run: cp -r dist/* docs/
 
       - name: Deploy to GitHub Pages
         env:
