@@ -34,16 +34,21 @@ jobs:
             echo "Error: dist directory is empty."
             exit 1
           fi
+          echo "dist directory contents:"
+          ls -la dist
 
       - name: Create docs directory
         run: |
           echo "Creating docs directory..."
           mkdir -p docs
+          echo "docs directory created."
+          ls -la docs
 
       - name: Copy files to docs
         run: |
           echo "Copying files from dist to docs..."
           cp -r dist/* docs/
+          echo "docs directory contents after copy:"
           ls -la docs
 
       - name: Deploy to GitHub Pages
@@ -61,6 +66,7 @@ jobs:
           rm -rf ./*
           echo "Copying files from docs to current directory..."
           cp -r docs/* ./
+          echo "Current directory contents after copy:"
           ls -la
           echo "Committing changes..."
           git add .
