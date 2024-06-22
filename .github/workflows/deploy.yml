@@ -25,28 +25,45 @@ jobs:
 
       - name: Verify dist directory
         run: |
-          if [ ! -d dist ] || [ -z "$(ls -A dist)" ]; then
-            echo "Error: dist directory is empty or does not exist"
+          echo "Checking if dist directory exists and is not empty..."
+          if [ ! -d dist ]; then
+            echo "Error: dist directory does not exist."
+            exit 1
+          fi
+          if [ -z "$(ls -A dist)" ]; then
+            echo "Error: dist directory is empty."
             exit 1
           fi
 
       - name: Create docs directory
-        run: mkdir -p docs
+        run: |
+          echo "Creating docs directory..."
+          mkdir -p docs
 
       - name: Copy files to docs
-        run: cp -r dist/* docs/
+        run: |
+          echo "Copying files from dist to docs..."
+          cp -r dist/* docs/
+          ls -la docs
 
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_NAME: kabirdkng/random-quran-ayat
         run: |
+          echo "Configuring Git..."
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@github.com"
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git
+          echo "Checking out gh-pages branch..."
           git checkout -b gh-pages || git checkout gh-pages
+          echo "Clearing existing files..."
           rm -rf ./*
+          echo "Copying files from docs to current directory..."
           cp -r docs/* ./
+          ls -la
+          echo "Committing changes..."
           git add .
           git commit -m "Deploy to GitHub Pages"
+          echo "Pushing to gh-pages branch..."
           git push origin gh-pages --force
