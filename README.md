@@ -1,8 +1,24 @@
-# React + Vite
+Live version is running on
+[rqag](https://rqag.netlify.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+this app is built with create-react-app
 
-Currently, two official plugins are available:
+to build this app on your machine, make sure that you have install Node.js in yor machine.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+when you have node js installed then you can clone this repo and run in your terminal
+
+```bash
+cd random-quran-ayat
+```
+
+```bash
+npm install
+```
+
+then run 
+
+```bash
+npm start
+```
+
+it will start the app in your localhost.
