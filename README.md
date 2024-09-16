@@ -1,5 +1,5 @@
 Live version is running on
-[rqag](https://rqag.netlify.app/)
+[Netlify](https://rqag.netlify.app/)
 
 this app is built with create-react-app
 
