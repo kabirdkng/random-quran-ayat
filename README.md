@@ -3,9 +3,9 @@ Live version is running on
 
 this app is built with create-react-app
 
-to build this app on your machine, make sure that you have install Node.js in your machine.
+to build this app on your machine, make sure that you have installed Node.js in your machine.
 
-when you have node js installed then you can clone this repo and run in your terminal
+when you have node js installed then you can clone this repo and run following commands on your terminal
 
 ```bash
 cd random-quran-ayat
